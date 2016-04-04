@@ -482,6 +482,7 @@
 				A5293DF71CAC693A00FFC3FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5293DF81CAC693A00FFC3FD /* Build configuration list for PBXNativeTarget "cartlymilestoneTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +491,7 @@
 				A5293DFA1CAC693A00FFC3FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5293DFB1CAC693A00FFC3FD /* Build configuration list for PBXNativeTarget "cartlymilestoneUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +500,7 @@
 				A5293DFD1CAC693A00FFC3FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
