@@ -19,6 +19,13 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     
     @IBOutlet var mapView: MKMapView!
     
+    @IBOutlet weak var selectLocationLabel: UILabel!
+    
+    //Location description holders
+    var an0Coords : CLLocationCoordinate2D!
+    var an1Coords : CLLocationCoordinate2D!
+    var an2Coords : CLLocationCoordinate2D!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //can parse a json file to determine scaling values for the radius size of the circles, just count the num
@@ -28,6 +35,20 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         //Disable user interaction with map, they dont need to scroll in and out
         self.mapView.zoomEnabled = false;
         self.mapView.scrollEnabled = false;
+        //Add location select label annimation
+        selectLocationLabel.textColor = UIColor.redColor()
+        view.addSubview(selectLocationLabel) // Important!         
+        //Animation options
+        UIView.animateWithDuration(1.9, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.0, options: .CurveLinear, animations: {
+            
+            self.selectLocationLabel.center = CGPoint(x: 200, y:50 )  // Ending position of the Label
+            
+            }, completion: nil)
+        
+        UIView.animateWithDuration(2.6, delay: 1.1, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.0, options: .CurveLinear, animations: {
+            
+            self.selectLocationLabel.center = CGPoint(x: 200, y:150+90 )
+            }, completion: nil)
         //self.mapView.userInteractionEnabled = false;
         //Start map over Madison:
         let span = MKCoordinateSpanMake(0.06, 0.06)
@@ -36,8 +57,29 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         mapView.showsUserLocation = true
         
         //Start adding circles by defining their respective locations
-    let location1 = CLLocation(latitude: 43.074927 as CLLocationDegrees, longitude: -89.398192 as CLLocationDegrees)
+        let location1 = CLLocation(latitude: 43.074927 as CLLocationDegrees, longitude: -89.398192 as CLLocationDegrees)
         addRadiusCircle(location1)
+        
+         //Annotations defined here
+        let an0 = MKPointAnnotation()
+        an0.coordinate = CLLocationCoordinate2D(latitude: 43.074927, longitude: -89.398192)
+        //print(an0.description)
+        self.mapView.addAnnotation(an0)
+        
+        an0Coords = an0.coordinate
+        
+        let an1 = MKPointAnnotation()
+        an1.coordinate = CLLocationCoordinate2D(latitude: 43.070997, longitude: -89.406588)
+        self.mapView.addAnnotation(an1)
+        
+        an1Coords = an1.coordinate
+        
+        let an2 = MKPointAnnotation()
+        an2.coordinate = CLLocationCoordinate2D(latitude: 43.073146, longitude: -89.382064)
+        self.mapView.addAnnotation(an2)
+        
+        an2Coords = an2.coordinate
+        
     }
     
     let location2 = CLLocation(latitude: 43.070997 as CLLocationDegrees, longitude: -89.406588 as CLLocationDegrees)
@@ -47,6 +89,8 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     //Unused location point
     let location4 = CLLocation(latitude: 43.070997 as CLLocationDegrees, longitude: -89.406588 as CLLocationDegrees)
 
+   
+    //Adding the custom overlay circle to the map
     func addRadiusCircle(location1: CLLocation){
         self.mapView.delegate = self
         let circle = MKCircle(centerCoordinate: location1.coordinate, radius: 100 as CLLocationDistance)
@@ -69,27 +113,25 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         }
     }
     //End adding circles to map
-    
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl)
-    {
-        //prepareForSegue(UIStoryboardSegue, sender: AnyObject?)
-    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
       //var DestViewConroller : UIViewController //= segue.destinationViewController as UIViewController
         
-        if segue.identifier == "circle0"
+        if segue.identifier == "an0"
         {
-           //Circle0ViewController = segue.destinationViewController
+            //set key to fetch corresponging json file from server
+            print("an0 segue")
         }
-        else if segue.identifier == "circle1"
+        else if segue.identifier == "an1"
         {
-            //set next view to corresponding list
+            //set key to fetch corresponging json file from server
+            print("an1 segue")
         }
-        else if segue.identifier == "circle2"
+        else if segue.identifier == "an2"
         {
-            //set next view to corresponding list
+            //set key to fetch corresponging json file from server
+            print("an2 segue")
         }
         else {
             return
@@ -103,8 +145,22 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView){
         print("click")
+        
+        //check for geocoords to determine which one was selected
+        let objCoords = view.annotation!.coordinate
+        if objCoords.latitude == an0Coords.latitude && objCoords.longitude == an0Coords.longitude
+        {
+            print("an0")
+            self.performSegueWithIdentifier("an0", sender: self)
+        }
+        else if objCoords.latitude == an1Coords.latitude && objCoords.longitude == an1Coords.longitude {
+            print("an1")
+            self.performSegueWithIdentifier("an1", sender: self)
+        }
+        else if objCoords.latitude == an2Coords.latitude && objCoords.longitude == an2Coords.longitude{
+            print("an2")
+            self.performSegueWithIdentifier("an2", sender: self)
+        }
     }
-
-
 }
 
