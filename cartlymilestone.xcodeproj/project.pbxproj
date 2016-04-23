@@ -14,6 +14,7 @@
 		A5293DDB1CAC693A00FFC3FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5293DD91CAC693A00FFC3FD /* LaunchScreen.storyboard */; };
 		A5293DE61CAC693A00FFC3FD /* cartlymilestoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5293DE51CAC693A00FFC3FD /* cartlymilestoneTests.swift */; };
 		A5293DF11CAC693A00FFC3FD /* cartlymilestoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5293DF01CAC693A00FFC3FD /* cartlymilestoneUITests.swift */; };
+		A565F9181CCC16BE005CC647 /* 1424218267033.png in Resources */ = {isa = PBXBuildFile; fileRef = A565F9171CCC16BE005CC647 /* 1424218267033.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		A5293DEC1CAC693A00FFC3FD /* cartlymilestoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cartlymilestoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5293DF01CAC693A00FFC3FD /* cartlymilestoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cartlymilestoneUITests.swift; sourceTree = "<group>"; };
 		A5293DF21CAC693A00FFC3FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A565F9171CCC16BE005CC647 /* 1424218267033.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1424218267033.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				A5293DD21CAC693A00FFC3FD /* ViewController.swift */,
 				A5293DD41CAC693A00FFC3FD /* Main.storyboard */,
 				A5293DD71CAC693A00FFC3FD /* Assets.xcassets */,
+				A565F9171CCC16BE005CC647 /* 1424218267033.png */,
 				A5293DD91CAC693A00FFC3FD /* LaunchScreen.storyboard */,
 				A5293DDC1CAC693A00FFC3FD /* Info.plist */,
 			);
@@ -232,6 +235,7 @@
 				A5293DDB1CAC693A00FFC3FD /* LaunchScreen.storyboard in Resources */,
 				A5293DD81CAC693A00FFC3FD /* Assets.xcassets in Resources */,
 				A5293DD61CAC693A00FFC3FD /* Main.storyboard in Resources */,
+				A565F9181CCC16BE005CC647 /* 1424218267033.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
