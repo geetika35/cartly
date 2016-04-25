@@ -22,6 +22,7 @@
 		A5D27FBA1CCEBE76004ECD2D /* Screen Shot 2016-04-25 at 3.56.35 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A5D27FB91CCEBE76004ECD2D /* Screen Shot 2016-04-25 at 3.56.35 PM.png */; };
 		A5D27FBC1CCEBE7E004ECD2D /* menu-page-001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A5D27FBB1CCEBE7E004ECD2D /* menu-page-001.jpg */; };
 		A5D27FBE1CCEC0AB004ECD2D /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D27FBD1CCEC0AB004ECD2D /* FoodViewController.swift */; };
+		A5D27FC01CCEC30B004ECD2D /* Screen Shot 2016-04-25 at 4.25.45 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = A5D27FBF1CCEC30B004ECD2D /* Screen Shot 2016-04-25 at 4.25.45 PM.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		A5D27FB91CCEBE76004ECD2D /* Screen Shot 2016-04-25 at 3.56.35 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2016-04-25 at 3.56.35 PM.png"; sourceTree = "<group>"; };
 		A5D27FBB1CCEBE7E004ECD2D /* menu-page-001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "menu-page-001.jpg"; sourceTree = "<group>"; };
 		A5D27FBD1CCEC0AB004ECD2D /* FoodViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
+		A5D27FBF1CCEC30B004ECD2D /* Screen Shot 2016-04-25 at 4.25.45 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen Shot 2016-04-25 at 4.25.45 PM.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				A5293DD01CAC693A00FFC3FD /* AppDelegate.swift */,
 				A5293DD21CAC693A00FFC3FD /* ViewController.swift */,
 				A5293DD41CAC693A00FFC3FD /* Main.storyboard */,
+				A5D27FBF1CCEC30B004ECD2D /* Screen Shot 2016-04-25 at 4.25.45 PM.png */,
 				A5D27FBD1CCEC0AB004ECD2D /* FoodViewController.swift */,
 				A5D27FBB1CCEBE7E004ECD2D /* menu-page-001.jpg */,
 				A5D27FB91CCEBE76004ECD2D /* Screen Shot 2016-04-25 at 3.56.35 PM.png */,
@@ -255,6 +258,7 @@
 			files = (
 				A5293DDB1CAC693A00FFC3FD /* LaunchScreen.storyboard in Resources */,
 				A5293DD81CAC693A00FFC3FD /* Assets.xcassets in Resources */,
+				A5D27FC01CCEC30B004ECD2D /* Screen Shot 2016-04-25 at 4.25.45 PM.png in Resources */,
 				A5293DD61CAC693A00FFC3FD /* Main.storyboard in Resources */,
 				A565F9181CCC16BE005CC647 /* 1424218267033.png in Resources */,
 				A5D27FBA1CCEBE76004ECD2D /* Screen Shot 2016-04-25 at 3.56.35 PM.png in Resources */,
