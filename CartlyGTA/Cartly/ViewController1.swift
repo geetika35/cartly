@@ -14,8 +14,14 @@ import MapKit
 import Foundation
 import MapKit
 
-class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
+class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, NSURLConnectionDelegate, NSURLConnectionDataDelegate{
     var locationManager: CLLocationManager = CLLocationManager()
+    
+    //fetch all location data from server and populate a set of batabases to pass on to corresponding views
+    var data : NSMutableData!
+    var currURL : NSURL!
+    var foodCartsL1 = [foodCart]()
+    var foodCartsL2 = [foodCart]()
     
     @IBOutlet var mapView: MKMapView!
     
@@ -28,6 +34,18 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //start connection to get JSON data
+        self.data = NSMutableData()
+        var url: NSURL = NSURL(string: "http://pages.cs.wisc.edu/~gandrews/testJSON.json")!
+        let req: NSURLRequest = NSURLRequest(URL: url)
+        let connection: NSURLConnection = NSURLConnection(request: req, delegate: self)!
+        currURL = url
+        connection.start()
+        url = NSURL(string: "http://pages.cs.wisc.edu/~gandrews/testJSON2.json")!
+        currURL = url
+        let req2: NSURLRequest = NSURLRequest(URL: url)
+        let connection2: NSURLConnection = NSURLConnection(request: req2, delegate: self)!
+        connection2.start()
         //can parse a json file to determine scaling values for the radius size of the circles, just count the num
         //of unique food carts at the given location
         //get user permission for location
@@ -161,6 +179,62 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
             print("an2")
             self.performSegueWithIdentifier("an2", sender: self)
         }
+    }
+    // MARK: NSURLConnection functions
+    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+        self.data.length = 0
+    }
+    
+    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
+        self.data.appendData(data)
+        
+    }
+    
+    func connectionDidFinishLoading(connection: NSURLConnection) {
+        do {
+            if currURL.absoluteString == "http://pages.cs.wisc.edu/~gandrews/testJSON.json" {
+            if let jsonResult = try NSJSONSerialization.JSONObjectWithData(self.data, options: []) as? NSDictionary {
+                    print(jsonResult)
+                    if let cartLocale : NSInteger = jsonResult.objectForKey("Saigon Sandwich") as? NSInteger {
+                        let newCart: foodCart = foodCart(name: "Saigon Sandwich", isAtLocation: cartLocale)
+                        foodCartsL1.append(newCart)
+                    }
+                    if let cartLocale : NSInteger = jsonResult.objectForKey("Banzo") as? NSInteger {
+                        let newCart: foodCart = foodCart(name: "Banzo", isAtLocation: cartLocale)
+                        foodCartsL1.append(newCart)
+                    }
+                    if let cartLocale : NSInteger = jsonResult.objectForKey("Batter Brothers") as? NSInteger {
+                        let newCart: foodCart = foodCart(name: "Batter Brothers", isAtLocation: cartLocale)
+                        foodCartsL1.append(newCart)
+                    }
+                }
+        }
+            if currURL.absoluteString == "http://pages.cs.wisc.edu/~gandrews/testJSON2.json" {
+                if let jsonResult = try NSJSONSerialization.JSONObjectWithData(self.data, options: []) as? NSDictionary {
+                    print(jsonResult)
+                    if let cartLocale : NSInteger = jsonResult.objectForKey("Saigon Sandwich") as? NSInteger {
+                        let newCart: foodCart = foodCart(name: "Saigon Sandwich", isAtLocation: cartLocale)
+                        foodCartsL2.append(newCart)
+                    }
+                    if let cartLocale : NSInteger = jsonResult.objectForKey("Banzo") as? NSInteger {
+                        let newCart: foodCart = foodCart(name: "Banzo", isAtLocation: cartLocale)
+                        foodCartsL2.append(newCart)
+                    }
+                    if let cartLocale : NSInteger = jsonResult.objectForKey("Batter Brothers") as? NSInteger {
+                        let newCart: foodCart = foodCart(name: "Batter Brothers", isAtLocation: cartLocale)
+                        foodCartsL2.append(newCart)
+                    }
+                }
+            }
+        } catch {
+            print(error)
+        }
+        
+        connection.cancel()
+    }
+    
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+        print("Error During Connection: \(error.description)")
     }
 }
 
