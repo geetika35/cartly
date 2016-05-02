@@ -36,6 +36,15 @@ class Location1TableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        var i = 0
+        for object in foodCartsL1 as [foodCart] {
+            if object.isAtLocation == 0 {
+                foodCartsL1.removeAtIndex(i)
+            }
+            else {
+            i = i+1
+            }
+        }
         return foodCartsL1.count
     }
     
@@ -44,13 +53,9 @@ class Location1TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cartCell", forIndexPath: indexPath)
         
         // Configure the cell
-        //let currentCart = foodCartsL0[indexPath.row]
         let currentCart = foodCartsL1[indexPath.row]
-        if currentCart.isAtLocation == 1 {
             cell.textLabel?.text = currentCart.name
-            //need to handle when location is 0
             return cell
-        }
     }
     
     /*

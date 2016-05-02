@@ -41,14 +41,14 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         super.viewDidLoad()
         //start connection to get JSON data
         self.data = NSMutableData()
-        var url: NSURL = NSURL(string: "http://pages.cs.wisc.edu/~gandrews/testJSON.json")!
+        let url: NSURL = NSURL(string: "http://pages.cs.wisc.edu/~gandrews/testJSON.json")!
         let req: NSURLRequest = NSURLRequest(URL: url)
         let connection: NSURLConnection = NSURLConnection(request: req, delegate: self)!
-        currURL = url
+        //currURL = url
         connection.start()
-        url = NSURL(string: "http://pages.cs.wisc.edu/~gandrews/testJSON2.json")!
-        currURL = url
-        let req2: NSURLRequest = NSURLRequest(URL: url)
+        let url2 = NSURL(string: "http://pages.cs.wisc.edu/~gandrews/testJSON2.json")!
+        //currURL = url2
+        let req2: NSURLRequest = NSURLRequest(URL: url2)
         let connection2: NSURLConnection = NSURLConnection(request: req2, delegate: self)!
         connection2.start()
         //can parse a json file to determine scaling values for the radius size of the circles, just count the num
@@ -99,7 +99,7 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         
         an1Coords = an1.coordinate
         
-        //an2 = Cap Square
+        
         let an2 = MKPointAnnotation()
         an2.coordinate = CLLocationCoordinate2D(latitude: 43.073146, longitude: -89.382064)
         self.mapView.addAnnotation(an2)
@@ -154,8 +154,12 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         {
             //set key to fetch corresponging json file from server
             print("an0 segue")
-            if let DestVC = segue.destinationViewController as? ViewController1{
-                DestVC.foodCartsL0 = foodCartsL0
+            print(self.foodCartsL0.first?.name)
+            if let DestVC = segue.destinationViewController as? Location0TableViewController{
+                DestVC.foodCartsL0 = self.foodCartsL0
+            }
+            else {
+                print("ERROR")
             }
         }
         else if segue.identifier == "an1"
@@ -212,12 +216,15 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
     }
     
     func connectionDidFinishLoading(connection: NSURLConnection) {
+        print(connection.originalRequest.URL)
         do {
-            if currURL.absoluteString == "http://pages.cs.wisc.edu/~gandrews/testJSON.json" {
+            if connection.originalRequest.URL?.absoluteString == "http://pages.cs.wisc.edu/~gandrews/testJSON.json" {
                 if let jsonResult = try NSJSONSerialization.JSONObjectWithData(self.data, options: []) as? NSDictionary {
                     print(jsonResult)
                     if let cartLocale : NSInteger = jsonResult.objectForKey("Saigon Sandwich") as? NSInteger {
                         let newCart: foodCart = foodCart(name: "Saigon Sandwich", isAtLocation: cartLocale)
+                        print("LOOK HERE")
+                        print(newCart.name)
                         foodCartsL0.append(newCart)
                     }
                     if let cartLocale : NSInteger = jsonResult.objectForKey("Banzo") as? NSInteger {
@@ -230,7 +237,7 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
                     }
                 }
             }
-            if currURL.absoluteString == "http://pages.cs.wisc.edu/~gandrews/testJSON2.json" {
+            if connection.originalRequest.URL?.absoluteString == "http://pages.cs.wisc.edu/~gandrews/testJSON2.json" {
                 if let jsonResult = try NSJSONSerialization.JSONObjectWithData(self.data, options: []) as? NSDictionary {
                     print(jsonResult)
                     if let cartLocale : NSInteger = jsonResult.objectForKey("Saigon Sandwich") as? NSInteger {

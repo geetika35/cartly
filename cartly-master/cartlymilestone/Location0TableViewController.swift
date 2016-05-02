@@ -14,7 +14,8 @@ class Location0TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print(foodCartsL0.first?.name)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -36,6 +37,15 @@ class Location0TableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        var i = 0
+        for object in foodCartsL0 as [foodCart] {
+            if object.isAtLocation == 0 {
+                foodCartsL0.removeAtIndex(i)
+            }
+            else {
+                i = i+1
+            }
+        }
         return foodCartsL0.count
     }
     
@@ -44,13 +54,9 @@ class Location0TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cartCell", forIndexPath: indexPath)
         
         // Configure the cell
-        //let currentCart = foodCartsL0[indexPath.row]
-        //let currentCart = foodCartsL0[indexPath.row]
-        guard let currentCart = foodCartsL0[indexPath.row] where currentCart.isAtLocation = 0 else{
+        let currentCart = foodCartsL0[indexPath.row]
         cell.textLabel?.text = currentCart.name
-        //need to handle when location is 0
         return cell
-        }
     }
 
     /*
