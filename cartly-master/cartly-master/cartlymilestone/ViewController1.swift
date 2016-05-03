@@ -99,13 +99,6 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         
         an1Coords = an1.coordinate
         
-        
-        let an2 = MKPointAnnotation()
-        an2.coordinate = CLLocationCoordinate2D(latitude: 43.073146, longitude: -89.382064)
-        self.mapView.addAnnotation(an2)
-        
-        an2Coords = an2.coordinate
-        
     }
     
     let location2 = CLLocation(latitude: 43.070997 as CLLocationDegrees, longitude: -89.406588 as CLLocationDegrees)
@@ -123,8 +116,6 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         self.mapView.addOverlay(circle)
         let circle2 = MKCircle(centerCoordinate: location2.coordinate, radius: 100 as CLLocationDistance)
         self.mapView.addOverlay(circle2)
-        let circle3 = MKCircle(centerCoordinate: location3.coordinate, radius: 100 as CLLocationDistance)
-        self.mapView.addOverlay(circle3)
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
@@ -154,23 +145,23 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
         {
             //set key to fetch corresponging json file from server
             print("an0 segue")
-            print(self.foodCartsL0.first?.name)
             if let DestVC = segue.destinationViewController as? Location0TableViewController{
                 DestVC.foodCartsL0 = self.foodCartsL0
             }
             else {
-                print("ERROR")
+                print("ERROR an0")
             }
         }
         else if segue.identifier == "an1"
         {
             //set key to fetch corresponging json file from server
             print("an1 segue")
-        }
-        else if segue.identifier == "an2"
-        {
-            //set key to fetch corresponging json file from server
-            print("an2 segue")
+            if let DestVC = segue.destinationViewController as? Location1TableViewController{
+                DestVC.foodCartsL1 = self.foodCartsL1
+            }
+            else {
+                print("ERROR an1")
+            }
         }
         else {
             return
@@ -200,10 +191,6 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
             print("an1")
             self.performSegueWithIdentifier("an1", sender: self)
         }
-        else if objCoords.latitude == an2Coords.latitude && objCoords.longitude == an2Coords.longitude{
-            print("an2")
-            self.performSegueWithIdentifier("an2", sender: self)
-        }
     }
     // MARK: NSURLConnection functions
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
@@ -223,8 +210,6 @@ class ViewController1: UIViewController, CLLocationManagerDelegate, MKMapViewDel
                     print(jsonResult)
                     if let cartLocale : NSInteger = jsonResult.objectForKey("Saigon Sandwich") as? NSInteger {
                         let newCart: foodCart = foodCart(name: "Saigon Sandwich", isAtLocation: cartLocale)
-                        print("LOOK HERE")
-                        print(newCart.name)
                         foodCartsL0.append(newCart)
                     }
                     if let cartLocale : NSInteger = jsonResult.objectForKey("Banzo") as? NSInteger {
