@@ -1,0 +1,1 @@
+python faceDetect3WORKINGCOPY.py /home/gtandrews/Desktop/Location1/Saigon16Stagecascade.xml /home/gtandrews/Desktop/Location1/BanzoTextcascade.xml /home/gtandrews/Desktop/Location1/Meltedcascade.xml
